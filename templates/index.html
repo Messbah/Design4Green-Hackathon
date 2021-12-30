@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Home</title>
+  </head>
+
+<!--  -->
+
+<body>
+
+  <!-- Navigation bar//////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////// -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="#home" class="w3-bar-item w3-button"><b>Team 27</b></a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="#home" class="w3-bar-item w3-button">Home</a>
+      <a href="{{ url_for('select_criteria') }}" class="w3-bar-item w3-button">Select Criteria</a>
+      <a href="#about_company" class="w3-bar-item w3-button">About us</a>
+
+
+<!--
+      <button class="w3-bar-item w3-button" onclick="openForm()">View Cart</button>
+
+      <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+
+          <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
+-->
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<br><br><br><br>
+
+  <h1 style="text-align:center" ><button onclick="location.href='{{ url_for('select_criteria') }}';" class="button" >Get Started</button></h1>
+
+  <!-- About the company Section //////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////-->
+<div class="w3-container" style="padding:128px 16px" id="about_company">
+  
+  <p class="w3-center w3-large"></p>
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Eco-friendly</p>
+      <p>In most of the cases adding more criteria will make your website more Eco-Friendly. Contribute to Green living.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Easy Maintenance</p>
+      <p>Maintainance is one of the most important part of a successful website. Maintain your website regularly.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">Responsive</p>
+      <p>Build your Website that will render perfectly on a variety of devices from minimum to maximum display size.</p>
+    </div>
+    <div class="w3-quarter">
+      <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Monitor</p>
+      <p>Get results on basis of your criteria choices with key stages and indicators. Has the flexibility to download the results.</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+</body>
+</html>

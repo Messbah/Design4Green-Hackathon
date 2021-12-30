@@ -1,0 +1,186 @@
+<html>
+    <head>
+         <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Home</title>
+        <style>
+            body{
+                width: available;
+                height: available;
+            }
+
+            table{
+                background: #FFFFFF;
+            }
+            .container{
+                width: available;
+                height: available;
+                text-align: center;
+            }
+
+            .leftpane{
+                width: 25%;
+                min-width: 350px;
+                height: available;
+                min-height: 400px;
+                float: left;
+                text-align: center;
+                border-collapse: collapse;
+            }
+
+
+
+            .rightpane{
+                width: 75%;
+                height: available;
+                position: relative;
+                text-align: center;
+                border-collapse: collapse;
+            }
+
+        </style>
+    </head>
+
+<!--  -->
+
+    <body>
+
+        <!-- Navigation bar//////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////// -->
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+        <a href="#home" class="w3-bar-item w3-button"><b>MADS</b> Designer</a>
+        <!-- Float links to the right. Hide them on small screens -->
+        <div class="w3-right w3-hide-small">
+            <a href="#home" class="w3-bar-item w3-button">Home</a>
+            <a href="{{ url_for('select_criteria') }}" class="w3-bar-item w3-button">Select Criteria</a>
+            <a href="#about_company" class="w3-bar-item w3-button">About us</a>
+    
+    
+    <!--
+            <button class="w3-bar-item w3-button" onclick="openForm()">View Cart</button>
+    
+            <div class="form-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+    
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
+            </div>
+    -->
+    
+    
+        </div>
+        </div>
+    </div>
+    
+
+
+        <div id="pdf2" class="w3-row w3-padding" >
+        <div class="container" style="padding:100px 16px">
+            <div class="w3-col s3 w3-center">
+
+                <b>Following Phases are part of your Project:</b><br>
+                    {% for criteria in phase_dict %}
+                    {{criteria}}<br>
+                {% endfor %}
+
+            </div>
+            <div class="w3-col s9 w3-center">
+                <table  style=' border-radius: 15px; border-style: solid;'>
+                    <b>Following are the output indicators and key steps of the selected criteria:</b>
+                            <b>
+                            <tr>
+                                
+                                <th>Family</th>
+                                <th>Thematic keyword</th>
+                                <th>Indicators</th>
+                                <th>Key Steps</th>
+    
+                            </tr>
+                        </b>
+                        </thead>
+                        <tbody>
+                            {% for criteria in mandatory_criteria %}
+                            <tr>
+                                
+                                <td>{{criteria.Parent}}</td>
+                                <td>{{criteria.SubParent}}</td>
+                                <td>{{criteria.Indicators}}</td>
+                                <td>{{criteria.Key_steps}}</td>
+                            
+                            </tr>
+                            {% endfor %}
+                            {% for criteria1 in selected_criteria %}
+                            <tr>
+                                
+                                <td>{{criteria1.Parent}}</td>
+                                <td>{{criteria1.SubParent}}</td>
+                                <td>{{criteria1.Indicators}}</td>
+                                <td>{{criteria1.Key_steps}}</td>
+                            
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
+
+<div class="container" style="padding:50px 16px">
+    <div>
+        <input type="button" value="Create PDF" class="btn btn-primary btn-lg" id="btPrint" onclick="createPDF()" />
+    </div>
+</div>
+
+
+<footer class="w3-center w3-black w3-padding-64" >
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a href="/" title="W3.CSS" target="_blank" class="w3-hover-text-green">MADS.lab</a></p>
+</footer>
+
+
+<script>
+
+
+
+    function createPDF() {
+        var outTable = document.getElementById('pdf2').innerHTML;
+        sTable = localStorage.getItem("storageName");
+        var style = "<style>";
+        style = style + "table {width: 100%;font: 17px Calibri;}";
+        style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse; margin-left: auto; margin-right: auto;";
+        style = style + "padding: 2px 3px;text-align: center;}";
+        style = style + "</style>";
+
+        // CREATE A WINDOW OBJECT.
+        var win = window.open('', '', 'height=800,width=700');
+
+        win.document.write('<html><head>');
+        win.document.write('<title>Digital Fragility Index</title>');   // <title> FOR PDF HEADER.
+        win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(sTable);
+        win.document.write(outTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+        win.document.write('</body></html>');
+
+        win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+        win.print();    // PRINT THE CONTENTS.
+    }
+
+</script>
